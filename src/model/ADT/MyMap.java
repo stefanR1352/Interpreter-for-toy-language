@@ -5,6 +5,7 @@ import exceptions.KeyNotFoundException;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 public class MyMap<K,V> implements MyIMap<K,V>{
     private Map<K,V> map;
@@ -29,6 +30,9 @@ public class MyMap<K,V> implements MyIMap<K,V>{
         this.map.put(key, value);
     }
 
+    public Set<K> getKeys(){
+        return this.map.keySet();
+    }
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
