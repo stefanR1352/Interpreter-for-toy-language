@@ -1,6 +1,7 @@
 package model.values;
 
 import com.sun.jdi.Value;
+import model.types.IType;
 
 public class StringValue implements IValue{
     private String value;
@@ -13,5 +14,15 @@ public class StringValue implements IValue{
         this.value = value;
     }
 
-    public
+    @Override
+    public boolean equals(IValue value) {
+        return false;
+    }
+
+    @Override
+    public IType getType() {
+        return null;
+    }
+
+
 }

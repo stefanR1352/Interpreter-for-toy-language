@@ -7,7 +7,13 @@ public class StringType implements IType{
     public boolean equals(IType type){
         return type instanceof StringType;
     }
+
+    @Override
+    public IValue getDefaultValue() {
+        return null;
+    }
+
     public IValue defaultValue(){
-        return
+        return null;
     }
 }
