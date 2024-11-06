@@ -9,7 +9,7 @@ import java.util.Set;
 
 public class MyMap<K,V> implements MyIMap<K,V>{
     private Map<K,V> map;
-    public MyMap() {this.map = new HashMap<K,V>();}
+    public MyMap() {this.map = new HashMap<>();}
 
 
     @Override
@@ -38,7 +38,7 @@ public class MyMap<K,V> implements MyIMap<K,V>{
         StringBuilder sb = new StringBuilder();
         sb.append("SymTable { ");
         for(Map.Entry<K,V> entry : this.map.entrySet()){
-            sb.append(entry.getKey() + "-> " + entry.getValue() + "\n");
+            sb.append(entry.getKey() + "-> " + entry.getValue() + ", ");
         }
         sb.append("}");
         return sb.toString();

@@ -1,0 +1,225 @@
+PrgState: 
+Exec Stack:{v = 2; print(v)|int v|}
+SymTable { }
+Output List[ ]
+FileTable: 
+==>
+PrgState: 
+Exec Stack:{v = 2; print(v)|}
+SymTable { v-> 0, }
+Output List[ ]
+FileTable: 
+==>
+PrgState: 
+Exec Stack:{print(v)|v = 2|}
+SymTable { v-> 0, }
+Output List[ ]
+FileTable: 
+==>
+PrgState: 
+Exec Stack:{print(v)|}
+SymTable { v-> 2, }
+Output List[ ]
+FileTable: 
+==>
+PrgState: 
+Exec Stack:{}
+SymTable { v-> 2, }
+Output List[ 2 ]
+FileTable: 
+==>
+PrgState: 
+Exec Stack:{int b; a = 2 PLUS 3 MULTIPLY 5; b = a PLUS 1; print(b)|int a|}
+SymTable { }
+Output List[ ]
+FileTable: 
+==>
+PrgState: 
+Exec Stack:{int b; a = 2 PLUS 3 MULTIPLY 5; b = a PLUS 1; print(b)|}
+SymTable { a-> 0, }
+Output List[ ]
+FileTable: 
+==>
+PrgState: 
+Exec Stack:{a = 2 PLUS 3 MULTIPLY 5; b = a PLUS 1; print(b)|int b|}
+SymTable { a-> 0, }
+Output List[ ]
+FileTable: 
+==>
+PrgState: 
+Exec Stack:{a = 2 PLUS 3 MULTIPLY 5; b = a PLUS 1; print(b)|}
+SymTable { a-> 0, b-> 0, }
+Output List[ ]
+FileTable: 
+==>
+PrgState: 
+Exec Stack:{b = a PLUS 1; print(b)|a = 2 PLUS 3 MULTIPLY 5|}
+SymTable { a-> 0, b-> 0, }
+Output List[ ]
+FileTable: 
+==>
+PrgState: 
+Exec Stack:{b = a PLUS 1; print(b)|}
+SymTable { a-> 17, b-> 0, }
+Output List[ ]
+FileTable: 
+==>
+PrgState: 
+Exec Stack:{print(b)|b = a PLUS 1|}
+SymTable { a-> 17, b-> 0, }
+Output List[ ]
+FileTable: 
+==>
+PrgState: 
+Exec Stack:{print(b)|}
+SymTable { a-> 17, b-> 18, }
+Output List[ ]
+FileTable: 
+==>
+PrgState: 
+Exec Stack:{}
+SymTable { a-> 17, b-> 18, }
+Output List[ 18 ]
+FileTable: 
+==>
+PrgState: 
+Exec Stack:{int v; a = true; if(a){ v = 2}
+else{
+ v = 3
+}; print(v)|bool  a|}
+SymTable { }
+Output List[ ]
+FileTable: 
+==>
+PrgState: 
+Exec Stack:{int v; a = true; if(a){ v = 2}
+else{
+ v = 3
+}; print(v)|}
+SymTable { a-> false, }
+Output List[ ]
+FileTable: 
+==>
+PrgState: 
+Exec Stack:{a = true; if(a){ v = 2}
+else{
+ v = 3
+}; print(v)|int v|}
+SymTable { a-> false, }
+Output List[ ]
+FileTable: 
+==>
+PrgState: 
+Exec Stack:{a = true; if(a){ v = 2}
+else{
+ v = 3
+}; print(v)|}
+SymTable { a-> false, v-> 0, }
+Output List[ ]
+FileTable: 
+==>
+PrgState: 
+Exec Stack:{if(a){ v = 2}
+else{
+ v = 3
+}; print(v)|a = true|}
+SymTable { a-> false, v-> 0, }
+Output List[ ]
+FileTable: 
+==>
+PrgState: 
+Exec Stack:{if(a){ v = 2}
+else{
+ v = 3
+}; print(v)|}
+SymTable { a-> true, v-> 0, }
+Output List[ ]
+FileTable: 
+==>
+PrgState: 
+Exec Stack:{print(v)|if(a){ v = 2}
+else{
+ v = 3
+}|}
+SymTable { a-> true, v-> 0, }
+Output List[ ]
+FileTable: 
+==>
+PrgState: 
+Exec Stack:{print(v)|v = 2|}
+SymTable { a-> true, v-> 0, }
+Output List[ ]
+FileTable: 
+==>
+PrgState: 
+Exec Stack:{print(v)|}
+SymTable { a-> true, v-> 2, }
+Output List[ ]
+FileTable: 
+==>
+PrgState: 
+Exec Stack:{}
+SymTable { a-> true, v-> 2, }
+Output List[ 2 ]
+FileTable: 
+==>
+PrgState: 
+Exec Stack:{v = 2; print(v)|int v|}
+SymTable { }
+Output List[ ]
+FileTable: 
+==>
+PrgState: 
+Exec Stack:{v = 2; print(v)|}
+SymTable { v-> 0, }
+Output List[ ]
+FileTable: 
+==>
+PrgState: 
+Exec Stack:{print(v)|v = 2|}
+SymTable { v-> 0, }
+Output List[ ]
+FileTable: 
+==>
+PrgState: 
+Exec Stack:{print(v)|}
+SymTable { v-> 2, }
+Output List[ ]
+FileTable: 
+==>
+PrgState: 
+Exec Stack:{}
+SymTable { v-> 2, }
+Output List[ 2 ]
+FileTable: 
+==>
+PrgState: 
+Exec Stack:{v = 2; print(v)|int v|}
+SymTable { }
+Output List[ ]
+FileTable: 
+==>
+PrgState: 
+Exec Stack:{v = 2; print(v)|}
+SymTable { v-> 0, }
+Output List[ ]
+FileTable: 
+==>
+PrgState: 
+Exec Stack:{print(v)|v = 2|}
+SymTable { v-> 0, }
+Output List[ ]
+FileTable: 
+==>
+PrgState: 
+Exec Stack:{print(v)|}
+SymTable { v-> 2, }
+Output List[ ]
+FileTable: 
+==>
+PrgState: 
+Exec Stack:{}
+SymTable { v-> 2, }
+Output List[ 2 ]
+FileTable: 
+==>

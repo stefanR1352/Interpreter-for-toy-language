@@ -22,7 +22,7 @@ public class MyList<T> implements MyIList<T>{
     @Override
     public String toString() {
         StringBuilder str = new StringBuilder();
-        str.append("Output List[" );
+        str.append("Output List[ " );
         for( T t:list){
             str.append(t).append(" ");
         }

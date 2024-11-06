@@ -17,12 +17,30 @@ public class PrgState {
     private MyIMap<StringValue, BufferedReader> filetable;
     private IStatement originalStatement;
 
-
+    //getters
     public MyIStack<IStatement> getExeStack() {return exeStack;}
     public MyIMap<String, IValue> getSymTabel() {return symTabel;}
     public MyIList<IValue> getOutlist() {return outlist;}
     public MyIMap<StringValue, BufferedReader> getFiletable() {return filetable;}
     public IStatement getOriginalStatement() {return originalStatement;}
+
+    //setters
+    public void setExeStack(MyIStack<IStatement> exeStack) {
+        this.exeStack = exeStack;
+    }
+    public void setOriginalStatement(IStatement originalStatement) {
+        this.originalStatement = originalStatement;
+    }
+    public void setFiletable(MyIMap<StringValue, BufferedReader> filetable) {
+        this.filetable = filetable;
+    }
+    public void setOutlist(MyIList<IValue> outlist) {
+        this.outlist = outlist;
+    }
+    public void setSymTabel(MyIMap<String, IValue> symTabel) {
+        this.symTabel = symTabel;
+    }
+
 
     public PrgState(IStatement OGStatement){
         this.exeStack = new MyStack<IStatement>();
@@ -30,7 +48,7 @@ public class PrgState {
         this.outlist = new MyList<IValue>();
         this.filetable = new MyMap<StringValue, BufferedReader>();
         this.originalStatement = OGStatement.deepCopy();
-        this.exeStack.push(originalStatement.deepCopy());
+        this.exeStack.push(OGStatement);
     }
 
     public String fileTableToString(){
@@ -44,6 +62,6 @@ public class PrgState {
 
     public String toString(){
         return "PrgState: \n" +exeStack.toString() + "\n" +symTabel.toString()
-                + "\n" +outlist.toString() + filetable.toString()+ "\n";
+                + "\n" +outlist.toString() +'\n'+ fileTableToString() + "==>";
     }
 }

@@ -19,6 +19,11 @@ public class MyStack<T> implements MyIStack<T>{
     }
 
     @Override
+    public boolean isEmpty(){
+        return stack.isEmpty();
+    }
+
+    @Override
     public void push(T value) {
         stack.push(value);
     }
@@ -26,10 +31,11 @@ public class MyStack<T> implements MyIStack<T>{
     @Override
     public String toString(){
         StringBuilder str = new StringBuilder();
-        str.append("Exec Stack:\n");
+        str.append("Exec Stack:{");
         for(T t : stack){
-            str.append(t).append("\n");
+            str.append(t).append("|");
         }
+        str.append("}");
         return str.toString();
     }
 }

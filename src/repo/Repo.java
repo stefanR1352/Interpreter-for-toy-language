@@ -25,9 +25,13 @@ public class Repo implements IRepo {
         return this.states.get(index);
     }
 
+    public void incrementIndex(){
+        this.index++;
+    }
+
     @Override
     public void add(PrgState state) {
-        this.states.add(state);
+        states.add(state);
     }
 
     @Override

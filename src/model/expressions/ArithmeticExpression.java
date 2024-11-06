@@ -32,26 +32,27 @@ public class ArithmeticExpression implements IExpression {
 
         IntValue leftInt = (IntValue)leftVal;
         IntValue rightInt = (IntValue)rightVal;
-        switch (operator){
-            case PLUS:
-                return new IntValue(leftInt.getValue() + rightInt.getValue());
-            case MINUS:
-                return new IntValue(leftInt.getValue() - rightInt.getValue());
-            case MULTIPLY:
-                return new IntValue(leftInt.getValue() * rightInt.getValue());
-            case DIVIDE:
-                if(rightInt.getValue() == 0){
+        return switch (operator) {
+            case PLUS -> new IntValue(leftInt.getValue() + rightInt.getValue());
+            case MINUS -> new IntValue(leftInt.getValue() - rightInt.getValue());
+            case MULTIPLY -> new IntValue(leftInt.getValue() * rightInt.getValue());
+            case DIVIDE -> {
+                if (rightInt.getValue() == 0) {
                     throw new ExpressionExcpetion("Division by zero");
                 }
-                return new IntValue(leftInt.getValue() / rightInt.getValue());
-            default:
-                throw new ExpressionExcpetion("Unsupported operator");
-        }
+                yield new IntValue(leftInt.getValue() / rightInt.getValue());
+            }
+            default -> throw new ExpressionExcpetion("Unsupported operator");
+        };
 
     }
 
     @Override
     public IExpression deepCopy() {
         return new ArithmeticExpression(left.deepCopy(), operator, right.deepCopy());
+    }
+    @Override
+    public String toString() {
+        return  left.toString() +" "+ operator.toString() + " " + right.toString();
     }
 }
