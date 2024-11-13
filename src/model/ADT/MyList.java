@@ -24,9 +24,10 @@ public class MyList<T> implements MyIList<T>{
         StringBuilder str = new StringBuilder();
         str.append("Output List[ " );
         for( T t:list){
-            str.append(t).append(" ");
+            str.append(t).append(", ");
         }
         str.append("]");
+        str.deleteCharAt(str.length()-3);
         return str.toString();
     }
 }
