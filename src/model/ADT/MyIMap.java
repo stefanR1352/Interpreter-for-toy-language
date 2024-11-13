@@ -10,4 +10,7 @@ public interface MyIMap <K, V> {
     public boolean containsKey(K key);
     public void put(K key, V value);
     public Set<K> getKeys();
+
+    void remove(K fileName);
+
 }

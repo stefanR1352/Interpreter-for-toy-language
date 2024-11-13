@@ -1,5 +1,7 @@
 package view;
 
+import java.io.IOException;
+
 public interface IView {
-    public void display();
+    public void display() throws IOException;
 }

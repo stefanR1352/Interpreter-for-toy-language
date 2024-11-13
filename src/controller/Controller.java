@@ -8,6 +8,8 @@ import model.state.PrgState;
 import model.statements.IStatement;
 import repo.IRepo;
 
+import java.io.IOException;
+
 public class Controller implements IController {
     IRepo repo;
     boolean displayFlag = false;
@@ -17,14 +19,14 @@ public class Controller implements IController {
     }
 
     @Override
-    public PrgState oneStep(PrgState state) throws EmptyStackException, ADTException {
+    public PrgState oneStep(PrgState state) throws EmptyStackException, ADTException, IOException {
         MyIStack<IStatement> stk = state.getExeStack();
         IStatement st = stk.pop();
         return st.execute(state);
     }
 
     @Override
-    public void allSteps() throws EmptyStackException, ADTException, RepoException {
+    public void allSteps() throws EmptyStackException, ADTException, RepoException, IOException {
         PrgState prgState = repo.getCurrentPrg();
         if(displayFlag) {
             displayCrtState(prgState);
@@ -37,6 +39,9 @@ public class Controller implements IController {
                 displayCrtState(prgState);
             }
 
+        }
+        if(!displayFlag) {
+            displayCrtState(prgState);
         }
     }
 

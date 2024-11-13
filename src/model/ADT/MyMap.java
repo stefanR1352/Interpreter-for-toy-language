@@ -33,6 +33,12 @@ public class MyMap<K,V> implements MyIMap<K,V>{
     public Set<K> getKeys(){
         return this.map.keySet();
     }
+
+    @Override
+    public void remove(K fileName) {
+        this.map.remove(fileName);
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

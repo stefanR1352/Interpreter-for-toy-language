@@ -23,6 +23,7 @@ public class StringValue implements IValue{
     public IType getType() {
         return null;
     }
+    public String getVal() { return value; }
 
 
 }

@@ -1,7 +1,6 @@
 package view;
 
 import controller.Controller;
-import examples.Examples;
 import exceptions.ADTException;
 import exceptions.ReadException;
 import model.expressions.ArithmeticExpression;
@@ -17,6 +16,7 @@ import model.values.IntValue;
 import repo.IRepo;
 import repo.Repo;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class View implements IView {
@@ -25,7 +25,7 @@ public class View implements IView {
     public View(){}
 
     @Override
-    public void display() {
+    public void display() throws IOException {
         System.out.println("Start interpreter\n");
         System.out.println("""
                 1. Input program
@@ -39,7 +39,7 @@ public class View implements IView {
             switch (userInput) {
                 case 1:
                     inputProgram();
-                     break;
+                    break;
                 case 2:
                     completeExecution();
                     break;
@@ -103,7 +103,7 @@ public class View implements IView {
         }
     }
 
-    public void oneStepExecution(){
+    public void oneStepExecution() throws IOException {
         if(controller == null){
             System.out.println("No program selected");
             return;
@@ -128,7 +128,7 @@ public class View implements IView {
                 new ComposedStatement(
                         new VarDeclarationStatement("b", new IntType()),
                         new ComposedStatement(
-                                new AssignmentStatement("a", new ArithmeticExpression(new ValueExpression(new IntValue(2)), ArithmeticalOperator.PLUS,
+                                new AssignmentStatement("a", new ArithmeticExpression(new ValueExpression(new BoolValue(true)), ArithmeticalOperator.PLUS,
                                         new ArithmeticExpression( new ValueExpression(new IntValue(3)), ArithmeticalOperator.MULTIPLY, new ValueExpression(new IntValue(5))))),
                                 new ComposedStatement(
                                         new AssignmentStatement("b", new ArithmeticExpression( new VariableExpression("a"), ArithmeticalOperator.PLUS, new ValueExpression(new IntValue(1)))),

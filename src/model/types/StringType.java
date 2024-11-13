@@ -1,6 +1,7 @@
 package model.types;
 
 import model.values.IValue;
+import model.values.StringValue;
 
 public class StringType implements IType{
     public StringType(){}
@@ -10,7 +11,7 @@ public class StringType implements IType{
 
     @Override
     public IValue getDefaultValue() {
-        return null;
+        return new StringValue("");
     }
 
     public IValue defaultValue(){
