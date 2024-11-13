@@ -6,6 +6,8 @@ import model.values.IntValue;
 public class IntType  implements IType {
     public boolean equals(IType t) {return t instanceof IntType;}
 
+
+
     @Override
     public IValue getDefaultValue() {
         return new IntValue(0);

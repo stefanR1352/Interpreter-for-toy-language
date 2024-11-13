@@ -1,16 +1,18 @@
 import controller.Controller;
 import model.command.ExitCommand;
 import model.command.RunExample;
-import model.expressions.ArithmeticExpression;
-import model.expressions.ArithmeticalOperator;
-import model.expressions.ValueExpression;
-import model.expressions.VariableExpression;
+import model.expressions.*;
+import model.state.CloseFile;
+import model.state.OpenFile;
 import model.state.PrgState;
+import model.state.ReadFile;
 import model.statements.*;
 import model.types.BoolType;
 import model.types.IntType;
+import model.types.StringType;
 import model.values.BoolValue;
 import model.values.IntValue;
+import model.values.StringValue;
 import repo.IRepo;
 import repo.Repo;
 import view.IView;
@@ -41,15 +43,29 @@ public class Main {
         repo3.add(new PrgState(ex3));
         Controller ctr3 = new Controller(repo3);
 
+        IStatement ex4 = createStatement4();
+        IRepo repo4 = new Repo("logFile4.txt");
+        repo4.add(new PrgState(ex4));
+        Controller ctr4 = new Controller(repo4);
+
+        IStatement ex5 = createStatement5();
+        IRepo repo5 = new Repo("logFile5.txt");
+        repo5.add(new PrgState(ex5));
+        Controller ctr5 = new Controller(repo5);
+
+
         // Add Commands
         menu.addCommand(new ExitCommand("0", "Exit"));
         menu.addCommand(new RunExample("1", "Run Example 1", ctr1));
         menu.addCommand(new RunExample("2", "Run Example 2", ctr2));
         menu.addCommand(new RunExample("3", "Run Example 3", ctr3));
+        menu.addCommand(new RunExample("4", "Run Example 4", ctr4));
+        menu.addCommand(new RunExample("5", "Run Example 5", ctr5));
 
         // Display the menu
         menu.show();
     }
+
     private static IStatement createStatement1() {
         return new ComposedStatement(new VarDeclarationStatement("v", new IntType()),
                 new ComposedStatement(new AssignmentStatement("v", new ValueExpression(new IntValue(2))),
@@ -65,9 +81,9 @@ public class Main {
                         new VarDeclarationStatement("b", new IntType()),
                         new ComposedStatement(
                                 new AssignmentStatement("a", new ArithmeticExpression(new ValueExpression(new IntValue(2)), ArithmeticalOperator.PLUS,
-                                        new ArithmeticExpression( new ValueExpression(new IntValue(3)), ArithmeticalOperator.MULTIPLY, new ValueExpression(new IntValue(5))))),
+                                        new ArithmeticExpression(new ValueExpression(new IntValue(3)), ArithmeticalOperator.MULTIPLY, new ValueExpression(new IntValue(5))))),
                                 new ComposedStatement(
-                                        new AssignmentStatement("b", new ArithmeticExpression( new VariableExpression("a"), ArithmeticalOperator.PLUS, new ValueExpression(new IntValue(1)))),
+                                        new AssignmentStatement("b", new ArithmeticExpression(new VariableExpression("a"), ArithmeticalOperator.PLUS, new ValueExpression(new IntValue(1)))),
                                         new PrintStatement(new VariableExpression("b"))
                                 )
                         )
@@ -89,6 +105,59 @@ public class Main {
                                                 new AssignmentStatement("v", new ValueExpression(new IntValue(3))
                                                 )),
                                         new PrintStatement(new VariableExpression("v"))
+                                )
+                        )
+                )
+        );
+    }
+
+    private static IStatement createStatement4() {
+        return new ComposedStatement(
+                new VarDeclarationStatement("varf", new StringType()),
+                new ComposedStatement(
+                        new AssignmentStatement("varf", new ValueExpression(new StringValue("test.in"))),
+                        new ComposedStatement(
+                                new OpenFile(new VariableExpression("varf")),
+                                new ComposedStatement(
+                                        new VarDeclarationStatement("varc", new IntType()),
+                                        new ComposedStatement(
+                                                new ReadFile(new VariableExpression("varf"), "varc"),
+                                                new ComposedStatement(
+                                                        new PrintStatement(new VariableExpression("varc")),
+                                                        new ComposedStatement(
+                                                                new ReadFile(new VariableExpression("varf"), "varc"),
+                                                                new ComposedStatement(
+                                                                        new PrintStatement(new VariableExpression("varc")),
+                                                                        new CloseFile(new VariableExpression("varf"))
+                                                                )
+                                                        )
+                                                )
+                                        )
+                                )
+                        )
+                )
+        );
+    }
+
+    private static IStatement createStatement5() {
+        return new ComposedStatement(
+                new VarDeclarationStatement("a", new IntType()),
+                new ComposedStatement(
+                        new VarDeclarationStatement("b", new IntType()),
+                        new ComposedStatement(
+                                new AssignmentStatement("a", new ValueExpression(new IntValue(10))),
+                                new ComposedStatement(
+                                        new AssignmentStatement("b", new ValueExpression(new IntValue(5))),
+                                        new ComposedStatement(
+                                                new PrintStatement(
+                                                        new RelationalExpression(
+                                                                new VariableExpression("a"),
+                                                                new VariableExpression("b"),
+                                                                RelationalOperator.GREATER
+                                                        )
+                                                ),
+                                                new NopStatement()
+                                        )
                                 )
                         )
                 )

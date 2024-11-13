@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MyFileTable implements MyIFileTable<StringValue, BufferedReader> {
-    private Map<StringValue, BufferedReader> fileTable = new HashMap<>();
+    private final Map<StringValue, BufferedReader> fileTable = new HashMap<>();
 
     @Override
     public void add(StringValue key, BufferedReader value) throws FileTableException {

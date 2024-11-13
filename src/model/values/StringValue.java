@@ -2,6 +2,7 @@ package model.values;
 
 import com.sun.jdi.Value;
 import model.types.IType;
+import model.types.StringType;
 
 public class StringValue implements IValue{
     private String value;
@@ -21,9 +22,14 @@ public class StringValue implements IValue{
 
     @Override
     public IType getType() {
-        return null;
+        return new StringType();
     }
     public String getVal() { return value; }
 
-
+    @Override
+    public String toString() {
+        return "StringValue{" +
+                "value='" + value + '\'' +
+                '}';
+    }
 }

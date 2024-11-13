@@ -15,6 +15,8 @@ public class BoolType implements IType{
 
     }
 
+
+
     public String toString() { return "bool ";}
 
 }
