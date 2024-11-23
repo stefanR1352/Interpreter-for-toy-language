@@ -1,6 +1,7 @@
 package model.expressions;
 
 import exceptions.ExpressionExcpetion;
+import model.ADT.MyIHeap;
 import model.ADT.MyIMap;
 import model.values.IValue;
 
@@ -10,7 +11,7 @@ public class ValueExpression implements IExpression {
     public ValueExpression(IValue value) { this.value = value; }
 
     @Override
-    public IValue eval(MyIMap<String, IValue> symTabel) throws ExpressionExcpetion {
+    public IValue eval(MyIMap<String, IValue> symTabel, MyIHeap heap) throws ExpressionExcpetion {
         return value;
     }
 

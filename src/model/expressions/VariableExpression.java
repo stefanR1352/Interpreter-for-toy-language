@@ -2,6 +2,7 @@ package model.expressions;
 
 import exceptions.ADTException;
 import exceptions.ExpressionExcpetion;
+import model.ADT.MyIHeap;
 import model.ADT.MyIMap;
 import model.values.IValue;
 
@@ -15,7 +16,7 @@ public class VariableExpression implements IExpression {
     }
 
     @Override
-    public IValue eval(MyIMap<String, IValue> symTabel) throws ExpressionExcpetion {
+    public IValue eval(MyIMap<String, IValue> symTabel, MyIHeap heap) throws ExpressionExcpetion {
         if(!symTabel.containsKey(variable)){
             throw new ExpressionExcpetion("Variable " + variable + " not found");
         }

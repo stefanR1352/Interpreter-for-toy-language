@@ -1,5 +1,6 @@
 package model.statements;
 
+import exceptions.ADTException;
 import exceptions.ExpressionExcpetion;
 import exceptions.StatementException;
 import model.expressions.IExpression;
@@ -14,8 +15,8 @@ public class PrintStatement implements IStatement{
 
 
     @Override
-    public PrgState execute(PrgState p) throws StatementException, ExpressionExcpetion {
-        IValue v = expression.eval(p.getSymTabel());
+    public PrgState execute(PrgState p) throws StatementException, ExpressionExcpetion, ADTException {
+        IValue v = expression.eval(p.getSymTabel(), p.getHeap());
         p.getOutlist().add(v);
         return p;
     }

@@ -2,10 +2,12 @@ package model.ADT;
 
 import exceptions.ADTException;
 import exceptions.KeyNotFoundException;
+import model.values.IValue;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class MyMap<K,V> implements MyIMap<K,V>{
     private Map<K,V> map;
@@ -41,12 +43,18 @@ public class MyMap<K,V> implements MyIMap<K,V>{
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("SymTable { ");
-        for(Map.Entry<K,V> entry : this.map.entrySet()){
-            sb.append(entry.getKey() + "-> " + entry.getValue() + ", ");
-        }
-        sb.append("}");
-        return sb.toString();
+        return "SymTable " + map.entrySet()
+                .stream()
+                .map(entry -> entry.getKey() + " -> " + entry.getValue().toString())
+                .collect(Collectors.joining(", ", "{", "}"));
     }
+//    public String toString() {
+//        StringBuilder sb = new StringBuilder();
+//        sb.append("SymTable { ");
+//        for(Map.Entry<K,V> entry : this.map.entrySet()){
+//            sb.append(entry.getKey() + "-> " + entry.getValue() + ", ");
+//        }
+//        sb.append("}");
+//        return sb.toString();
+//    }
 }

@@ -1,6 +1,8 @@
 package model.expressions;
 
+import exceptions.ADTException;
 import exceptions.ExpressionExcpetion;
+import model.ADT.MyIHeap;
 import model.ADT.MyIMap;
 import model.types.IntType;
 import model.values.BoolValue;
@@ -19,9 +21,9 @@ public class RelationalExpression implements IExpression{
         this.operator = operator;
     }
 
-    public IValue eval(MyIMap<String, IValue> symTable) {
-        IValue left = this.left.eval(symTable);
-        IValue right = this.right.eval(symTable);
+    public IValue eval(MyIMap<String, IValue> symTable, MyIHeap heap) throws ADTException {
+        IValue left = this.left.eval(symTable, heap);
+        IValue right = this.right.eval(symTable, heap);
 
         if (!(left.getType().equals(new IntType())) || !(right.getType().equals(new IntType()))) {
             throw new ExpressionExcpetion("Both operands must be integers");

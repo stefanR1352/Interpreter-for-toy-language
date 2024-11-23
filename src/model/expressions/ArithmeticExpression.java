@@ -1,7 +1,9 @@
 package model.expressions;
 
 import com.sun.jdi.IntegerType;
+import exceptions.ADTException;
 import exceptions.ExpressionExcpetion;
+import model.ADT.MyIHeap;
 import model.ADT.MyIMap;
 import model.statements.IStatement;
 import model.types.IntType;
@@ -20,9 +22,9 @@ public class ArithmeticExpression implements IExpression {
     }
 
     @Override
-    public IValue eval(MyIMap<String, IValue> symTabel) throws ExpressionExcpetion {
-        IValue leftVal = left.eval(symTabel);
-        IValue rightVal = right.eval(symTabel);
+    public IValue eval(MyIMap<String, IValue> symTabel, MyIHeap heap) throws ExpressionExcpetion, ADTException {
+        IValue leftVal = left.eval(symTabel, heap);
+        IValue rightVal = right.eval(symTabel, heap);
         if (!leftVal.getType().equals(new IntType())){
             throw new ExpressionExcpetion(leftVal + " is not an integer type");
         }

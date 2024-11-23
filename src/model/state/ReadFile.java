@@ -90,7 +90,7 @@ public class ReadFile implements IStatement {
 
     @Override
     public PrgState execute(PrgState p) throws ExpressionExcpetion, ADTException, IOException, StatementException {
-        IValue value = expression.eval(p.getSymTabel());
+        IValue value = expression.eval(p.getSymTabel(), p.getHeap());
         if (!value.getType().equals(new StringType())) {
             throw new ExpressionExcpetion("The expression is not a string");
         }

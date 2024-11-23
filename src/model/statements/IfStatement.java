@@ -1,5 +1,6 @@
 package model.statements;
 
+import exceptions.ADTException;
 import exceptions.ExpressionExcpetion;
 import exceptions.StatementException;
 import model.expressions.IExpression;
@@ -9,9 +10,9 @@ import model.values.BoolValue;
 import model.values.IValue;
 
 public class IfStatement implements IStatement {
-    private IExpression condition;
-    private IStatement thenStatement;
-    private IStatement elseStatement;
+    private final IExpression condition;
+    private final IStatement thenStatement;
+    private final IStatement elseStatement;
     public IfStatement(IExpression condition, IStatement thenStatement, IStatement elseStatement) {
         this.condition = condition;
         this.thenStatement = thenStatement;
@@ -19,8 +20,8 @@ public class IfStatement implements IStatement {
     }
 
     @Override
-    public PrgState execute(PrgState state) throws StatementException, ExpressionExcpetion {
-        IValue v = condition.eval(state.getSymTabel());
+    public PrgState execute(PrgState state) throws StatementException, ExpressionExcpetion, ADTException {
+        IValue v = condition.eval(state.getSymTabel(), state.getHeap());
         if(!v.getType().equals(new BoolType())){
             throw new StatementException("Condition expression is not of type BoolType");
         }

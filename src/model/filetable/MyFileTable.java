@@ -7,6 +7,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class MyFileTable implements MyIFileTable<StringValue, BufferedReader> {
     private final Map<StringValue, BufferedReader> fileTable = new HashMap<>();

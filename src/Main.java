@@ -9,6 +9,7 @@ import model.state.ReadFile;
 import model.statements.*;
 import model.types.BoolType;
 import model.types.IntType;
+import model.types.RefType;
 import model.types.StringType;
 import model.values.BoolValue;
 import model.values.IntValue;
@@ -53,6 +54,10 @@ public class Main {
         repo5.add(new PrgState(ex5));
         Controller ctr5 = new Controller(repo5);
 
+        IStatement ex6 = createStatement6();
+        IRepo repo6 = new Repo("logFile6.txt");
+        repo6.add(new PrgState(ex6));
+        Controller ctr6 = new Controller(repo6);
 
         // Add Commands
         menu.addCommand(new ExitCommand("0", "Exit"));
@@ -61,6 +66,7 @@ public class Main {
         menu.addCommand(new RunExample("3", "Run Example 3", ctr3));
         menu.addCommand(new RunExample("4", "Run Example 4", ctr4));
         menu.addCommand(new RunExample("5", "Run Example 5", ctr5));
+        menu.addCommand(new RunExample("6", "Run Example 6", ctr6));
 
         // Display the menu
         menu.show();
@@ -157,6 +163,30 @@ public class Main {
                                                         )
                                                 ),
                                                 new NopStatement()
+                                        )
+                                )
+                        )
+                )
+        );
+    }
+
+    private static IStatement createStatement6() {
+        return new ComposedStatement(
+                new VarDeclarationStatement("v", new RefType(new IntType())),
+                new ComposedStatement(
+                        new AllocationStatement("v", new ValueExpression(new IntValue(20))),
+                        new ComposedStatement(
+                                new VarDeclarationStatement("a", new RefType(new RefType(new IntType()))),
+                                new ComposedStatement(
+                                        new AllocationStatement("a", new VariableExpression("v")),
+                                        new ComposedStatement(
+                                                new PrintStatement(new ReadHeapExpression(new VariableExpression("v"))),
+                                                new PrintStatement(new ArithmeticExpression(
+                                                        new ReadHeapExpression(
+                                                                new ReadHeapExpression(new VariableExpression("a"))),
+                                                        ArithmeticalOperator.PLUS,
+                                                        new ValueExpression(new IntValue(5)))
+                                                )
                                         )
                                 )
                         )

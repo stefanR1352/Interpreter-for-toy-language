@@ -21,7 +21,7 @@ public class AssignmentStatement implements IStatement {
         if(!p.getSymTabel().containsKey(variable)) {
             throw new StatementException("Variable " + variable + " not found");
         }
-        IValue value = expression.eval(p.getSymTabel());
+        IValue value = expression.eval(p.getSymTabel(), p.getHeap());
         if(!value.getType().equals(p.getSymTabel().getValue(variable).getType())) {
             throw new StatementException("Variable " + variable + " has wrong type");
         }

@@ -16,6 +16,7 @@ public class PrgState {
     private MyIList<IValue> outlist;
     private MyIMap<StringValue, BufferedReader> filetable;
     private IStatement originalStatement;
+    private MyIHeap heap;
 
     //getters
     public MyIStack<IStatement> getExeStack() {return exeStack;}
@@ -23,6 +24,7 @@ public class PrgState {
     public MyIList<IValue> getOutlist() {return outlist;}
     public MyIMap<StringValue, BufferedReader> getFiletable() {return filetable;}
     public IStatement getOriginalStatement() {return originalStatement;}
+    public MyIHeap getHeap() {return heap;}
 
     //setters
     public void setExeStack(MyIStack<IStatement> exeStack) {
@@ -40,7 +42,9 @@ public class PrgState {
     public void setSymTabel(MyIMap<String, IValue> symTabel) {
         this.symTabel = symTabel;
     }
-
+    public void setHeap(MyIHeap heap) {
+        this.heap = heap;
+    }
 
     public PrgState(IStatement OGStatement){
         this.exeStack = new MyStack<IStatement>();
@@ -49,6 +53,7 @@ public class PrgState {
         this.filetable = new MyMap<StringValue, BufferedReader>();
         this.originalStatement = OGStatement.deepCopy();
         this.exeStack.push(OGStatement);
+        this.heap = new MyHeap();
     }
 
     public String fileTableToString(){
@@ -62,6 +67,6 @@ public class PrgState {
 
     public String toString(){
         return "PrgState: \n" +exeStack.toString() + "\n" +symTabel.toString()
-                + "\n" +outlist.toString() +'\n'+ fileTableToString() + "==>";
+                + "\n" +outlist.toString() +'\n'+ fileTableToString() + heap.toString()+ "==>";
     }
 }
