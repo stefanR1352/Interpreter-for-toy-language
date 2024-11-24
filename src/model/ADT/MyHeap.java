@@ -41,6 +41,12 @@ public class MyHeap implements MyIHeap{
     }
 
     @Override
+    public void setContent(Map<Integer, IValue> content) {
+        heap.clear();
+        heap.putAll(content);
+    }
+
+    @Override
     public boolean containsKey(int key) {
         return heap.containsKey(key);
     }

@@ -4,11 +4,14 @@ import exceptions.ADTException;
 import exceptions.EmptyStackException;
 import exceptions.RepoException;
 import model.ADT.MyIStack;
+import model.garbage.GarbageCollector;
 import model.state.PrgState;
 import model.statements.IStatement;
 import repo.IRepo;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.Objects;
 
 public class Controller implements IController {
     IRepo repo;
@@ -34,6 +37,18 @@ public class Controller implements IController {
         while(!prgState.getExeStack().isEmpty()){
             oneStep(prgState);
             repo.logPrg();
+
+            //Garbage Collector
+            List<Integer> symTableAddresses = GarbageCollector.getAddrFromSymTable(prgState.getSymTabel().getKeys().stream().map(key -> {
+                try {
+                    return prgState.getSymTabel().getValue(key);
+                } catch (Exception e) {
+                    return null;
+                }
+            }).filter(Objects::nonNull).toList()
+            );
+
+            prgState.getHeap().setContent(GarbageCollector.safeGarbageCollector(symTableAddresses, prgState.getHeap().getHeap()));
 
             if(displayFlag) {
                 displayCrtState(prgState);

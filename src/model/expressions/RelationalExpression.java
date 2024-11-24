@@ -35,10 +35,10 @@ public class RelationalExpression implements IExpression{
         return switch (operator){
             case LESS -> new BoolValue(leftInt<rightInt);
             case LESS_EQUAL -> new BoolValue(leftInt<=rightInt);
-            case GREATER -> new BoolValue(rightInt>leftInt);
-            case GREATER_EQUAL -> new BoolValue(rightInt>=leftInt);
+            case GREATER -> new BoolValue(leftInt>rightInt);
+            case GREATER_EQUAL -> new BoolValue(leftInt>=rightInt);
             case EQUAL -> new BoolValue(leftInt==rightInt);
-            case NOT_EQUAL -> new BoolValue(rightInt!=leftInt);
+            case NOT_EQUAL -> new BoolValue(leftInt!=rightInt);
         };
     }
     @Override

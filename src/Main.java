@@ -59,6 +59,16 @@ public class Main {
         repo6.add(new PrgState(ex6));
         Controller ctr6 = new Controller(repo6);
 
+        IStatement ex7 = createWhileStatement();
+        IRepo repo7 = new Repo("logFile7.txt");
+        repo7.add(new PrgState(ex7));
+        Controller ctr7 = new Controller(repo7);
+
+        IStatement ex8 = createGarbageStatement();
+        IRepo repo8 = new Repo("logFile8.txt");
+        repo8.add(new PrgState(ex8));
+        Controller ctr8 = new Controller(repo8);
+
         // Add Commands
         menu.addCommand(new ExitCommand("0", "Exit"));
         menu.addCommand(new RunExample("1", "Run Example 1", ctr1));
@@ -67,6 +77,8 @@ public class Main {
         menu.addCommand(new RunExample("4", "Run Example 4", ctr4));
         menu.addCommand(new RunExample("5", "Run Example 5", ctr5));
         menu.addCommand(new RunExample("6", "Run Example 6", ctr6));
+        menu.addCommand(new RunExample("7", "Run While Example ", ctr7));
+        menu.addCommand(new RunExample("8", "Run Garbage Example ", ctr8));
 
         // Display the menu
         menu.show();
@@ -187,6 +199,55 @@ public class Main {
                                                         ArithmeticalOperator.PLUS,
                                                         new ValueExpression(new IntValue(5)))
                                                 )
+                                        )
+                                )
+                        )
+                )
+        );
+    }
+
+    private static IStatement createWhileStatement() {
+        return new ComposedStatement(
+                new VarDeclarationStatement("v", new IntType()),
+                new ComposedStatement(
+                        new AssignmentStatement("v", new ValueExpression(new IntValue(4))),
+                        new ComposedStatement(
+                                new WhileStatement(
+                                        new RelationalExpression(
+                                                new VariableExpression("v"),
+                                                new ValueExpression(new IntValue(0)),
+                                                RelationalOperator.GREATER
+                                        ),
+                                        new ComposedStatement(
+                                                new PrintStatement(new VariableExpression("v")),
+                                                new AssignmentStatement(
+                                                        "v",
+                                                        new ArithmeticExpression(
+                                                                new VariableExpression("v"),
+                                                                ArithmeticalOperator.MINUS,
+                                                                new ValueExpression(new IntValue(1))
+                                                        )
+                                                )
+                                        )
+                                ),
+                                new PrintStatement(new VariableExpression("v"))
+                        )
+                )
+        );
+    }
+
+    private static IStatement createGarbageStatement() {
+        return new ComposedStatement(
+                new VarDeclarationStatement("v", new RefType(new IntType())),
+                new ComposedStatement(
+                        new AllocationStatement("v", new ValueExpression(new IntValue(20))),
+                        new ComposedStatement(
+                                new VarDeclarationStatement("a", new RefType(new RefType(new IntType()))),
+                                new ComposedStatement(
+                                        new AllocationStatement("a", new VariableExpression("v")),
+                                        new ComposedStatement(
+                                                new AllocationStatement("v", new ValueExpression(new IntValue(30))),
+                                                new PrintStatement(new ReadHeapExpression(new ReadHeapExpression(new VariableExpression("a"))))
                                         )
                                 )
                         )

@@ -11,4 +11,5 @@ public interface MyIHeap {
     public void set(int key, IValue value);
     public boolean containsKey(int key);
     public Map<Integer, IValue> getHeap();
+    public void setContent(Map<Integer, IValue> content);
 }
