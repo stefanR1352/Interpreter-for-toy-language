@@ -64,10 +64,15 @@ public class Main {
         repo7.add(new PrgState(ex7));
         Controller ctr7 = new Controller(repo7);
 
-        IStatement ex8 = createGarbageStatement();
+        IStatement ex8 = createGarbageRemovalStatement();
         IRepo repo8 = new Repo("logFile8.txt");
         repo8.add(new PrgState(ex8));
         Controller ctr8 = new Controller(repo8);
+
+        IStatement ex9 = createLabStatement1();
+        IRepo repo9 = new Repo("logFile9.txt");
+        repo9.add(new PrgState(ex9));
+        Controller ctr9 = new Controller(repo9);
 
         // Add Commands
         menu.addCommand(new ExitCommand("0", "Exit"));
@@ -79,6 +84,7 @@ public class Main {
         menu.addCommand(new RunExample("6", "Run Example 6", ctr6));
         menu.addCommand(new RunExample("7", "Run While Example ", ctr7));
         menu.addCommand(new RunExample("8", "Run Garbage Example ", ctr8));
+        menu.addCommand(new RunExample("9", "Run Lab example 1 ", ctr9));
 
         // Display the menu
         menu.show();
@@ -250,6 +256,43 @@ public class Main {
                                                 new PrintStatement(new ReadHeapExpression(new ReadHeapExpression(new VariableExpression("a"))))
                                         )
                                 )
+                        )
+                )
+        );
+    }
+
+    private static IStatement createGarbageRemovalStatement() {
+        return new ComposedStatement(
+                new VarDeclarationStatement("v1", new RefType(new IntType())),
+                new ComposedStatement(
+                        new AllocationStatement("v1", new ValueExpression(new IntValue(10))),
+                        new ComposedStatement(
+                                new VarDeclarationStatement("v2", new RefType(new IntType())),
+                                new ComposedStatement(
+                                        new AllocationStatement("v2", new ValueExpression(new IntValue(20))),
+                                        new ComposedStatement(
+                                                new VarDeclarationStatement("v3", new RefType(new RefType(new IntType()))),
+                                                new ComposedStatement(
+                                                        new AllocationStatement("v3", new VariableExpression("v1")),
+                                                        new ComposedStatement(
+                                                                new PrintStatement(new ReadHeapExpression(new VariableExpression("v1"))),
+                                                                new PrintStatement(new ReadHeapExpression(new VariableExpression("v2")))
+                                                        )
+                                                )
+                                        )
+                                )
+                        )
+                )
+        );
+    }
+
+    private static IStatement createLabStatement1() {
+        return new ComposedStatement(
+                new VarDeclarationStatement("v", new RefType(new IntType())),
+                new ComposedStatement(
+                        new AllocationStatement("v", new ValueExpression(new IntValue(20))),
+                        new ComposedStatement(new AllocationStatement("v", new ValueExpression(new IntValue(30))),
+                                new AllocationStatement("v", new ValueExpression(new IntValue(40)))
                         )
                 )
         );

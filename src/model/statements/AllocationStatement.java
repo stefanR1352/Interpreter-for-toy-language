@@ -34,8 +34,10 @@ public class AllocationStatement implements IStatement {
         IValue value = expression.eval(p.getSymTabel(), p.getHeap());
 
         RefType refType = (RefType) varValue.getType();
-        if(!value.getType().equals(refType.getInnerType())) {
-            throw new StatementException("Variable " + varName + " is not an inner type, it expects: " + refType.getInnerType() + " instead of " + value.getType());
+
+//        if(!value.getType().equals(refType.getInnerType())) {
+        if(!value.getType().equals(((RefValue)varValue).getLocation())) {
+            throw new StatementException("Variable " + varName + " is not an inner type, it expects: " + ((RefValue)varValue).getLocation().toString() + " instead of " + value.getType());
         }
 
         int newAdress = p.getHeap().allocate(value);
