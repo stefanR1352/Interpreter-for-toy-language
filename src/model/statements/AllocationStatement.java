@@ -43,7 +43,7 @@ public class AllocationStatement implements IStatement {
         int newAdress = p.getHeap().allocate(value);
         p.getSymTabel().put(varName, new RefValue(newAdress, refType.getInnerType()));
 
-        return p;
+        return null;
     }
 
     @Override

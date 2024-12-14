@@ -9,14 +9,20 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class MyMap<K,V> implements MyIMap<K,V>{
-    private Map<K,V> map;
-    public MyMap() {this.map = new HashMap<>();}
+public class MyMap<K, V> implements MyIMap<K, V> {
+    private Map<K, V> map;
 
+    public MyMap() {
+        this.map = new HashMap<>();
+    }
+
+    public MyMap(Map<K, V> map) {
+        this.map = new HashMap<>(map);
+    }
 
     @Override
     public V getValue(K key) throws KeyNotFoundException {
-        if(this.map.containsKey(key)){
+        if (this.map.containsKey(key)) {
             return this.map.get(key);
         }
         throw new KeyNotFoundException();
@@ -32,13 +38,18 @@ public class MyMap<K,V> implements MyIMap<K,V>{
         this.map.put(key, value);
     }
 
-    public Set<K> getKeys(){
+    public Set<K> getKeys() {
         return this.map.keySet();
     }
 
     @Override
     public void remove(K fileName) {
         this.map.remove(fileName);
+    }
+
+    @Override
+    public MyIMap<K, V> deepCopy() {
+        return new MyMap<K, V>(this.map);
     }
 
     @Override

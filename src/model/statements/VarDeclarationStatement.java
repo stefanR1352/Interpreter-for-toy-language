@@ -23,7 +23,7 @@ public class VarDeclarationStatement implements IStatement {
         };
         IValue varValue = type.getDefaultValue();
         p.getSymTabel().put(varName, varValue);
-        return p;
+        return null;
     }
 
     @Override

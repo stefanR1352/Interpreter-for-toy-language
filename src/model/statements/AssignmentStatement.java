@@ -26,7 +26,7 @@ public class AssignmentStatement implements IStatement {
             throw new StatementException("Variable " + variable + " has wrong type");
         }
         p.getSymTabel().put(variable, value);
-        return p;
+        return null;
     }
 
     @Override

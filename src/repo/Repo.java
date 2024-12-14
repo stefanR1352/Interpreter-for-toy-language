@@ -13,19 +13,16 @@ import java.util.List;
 public class Repo implements IRepo {
     private List<PrgState> states;
     private int index;//index la al catelea prg din lista executam
+
     private String filePath;
+
     public Repo(String filePath) {
         this.filePath = filePath;
         this.index = 0;
         this.states = new ArrayList<PrgState>();
     }
 
-    @Override
-    public PrgState getCurrentPrg() {
-        return this.states.get(index);
-    }
-
-    public void incrementIndex(){
+    public void incrementIndex() {
         this.index++;
     }
 
@@ -35,14 +32,23 @@ public class Repo implements IRepo {
     }
 
     @Override
-    public void logPrg() throws RepoException {
-        try{
+    public void logPrg(PrgState state) throws RepoException {
+        try {
             PrintWriter logFile = new PrintWriter(new BufferedWriter(new FileWriter(filePath, true)));
-            logFile.println(getCurrentPrg().toString());
+            logFile.println(state.toString());
             logFile.close();
-        }
-        catch(IOException e){
+        } catch (IOException e) {
             throw new RepoException(e.getMessage());
         }
+    }
+
+    @Override
+    public List<PrgState> getPrgList() {
+        return states;
+    }
+
+    @Override
+    public void setPrglist(List<PrgState> prgList) {
+        this.states = prgList;
     }
 }

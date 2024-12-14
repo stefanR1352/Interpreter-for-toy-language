@@ -20,7 +20,7 @@ public class ComposedStatement implements IStatement {
         MyIStack<IStatement> stk = p.getExeStack();
         stk.push(secondStatement);
         stk.push(firstStatement);
-        return p;
+        return null;
     }
 
     @Override

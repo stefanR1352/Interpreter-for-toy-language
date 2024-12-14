@@ -18,7 +18,6 @@ import repo.IRepo;
 import repo.Repo;
 import view.IView;
 import view.TextMenu;
-import view.View;
 
 import java.io.IOException;
 

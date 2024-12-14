@@ -22,29 +22,29 @@ public class WriteHeapStatement implements IStatement {
 
     @Override
     public PrgState execute(PrgState p) throws StatementException, ExpressionExcpetion, ADTException, IOException {
-        if(! p.getSymTabel().containsKey(varName)) {
+        if (!p.getSymTabel().containsKey(varName)) {
             throw new StatementException("Variable " + varName + " not found");
         }
 
         IValue value = p.getSymTabel().getValue(varName);
-        if(!(value instanceof RefValue)){
+        if (!(value instanceof RefValue)) {
             throw new StatementException("Variable " + varName + " is not a reference");
         }
 
-        int addr = ((RefValue)value).getAddress();
+        int addr = ((RefValue) value).getAddress();
 
-        if(!p.getHeap().containsKey(addr)){
+        if (!p.getHeap().containsKey(addr)) {
             throw new StatementException("Address " + addr + " not found");
         }
 
         IValue expVal = expression.eval(p.getSymTabel(), p.getHeap());
 
-        if(!expVal.getType().equals((RefValue)((RefValue) value).getLocation())){
+        if (!expVal.getType().equals((RefValue) ((RefValue) value).getLocation())) {
             throw new StatementException("The types do not match!");
         }
         p.getHeap().set(addr, expVal);
 
-        return p;
+        return null;
     }
 
     @Override

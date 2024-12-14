@@ -18,7 +18,7 @@ public class PrintStatement implements IStatement{
     public PrgState execute(PrgState p) throws StatementException, ExpressionExcpetion, ADTException {
         IValue v = expression.eval(p.getSymTabel(), p.getHeap());
         p.getOutlist().add(v);
-        return p;
+        return null;
     }
 
     @Override

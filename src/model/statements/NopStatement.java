@@ -7,7 +7,7 @@ import model.state.PrgState;
 public class NopStatement implements IStatement {
     @Override
     public PrgState execute(PrgState p) throws StatementException {
-        return p;
+        return null;
     }
     @Override
     public IStatement deepCopy() {
